@@ -18,6 +18,9 @@ public class LoginPage {
 
     private String errorMsgEmptyFields ="Аутентификация не удалась";
     private String errorMsgWrongFields ="Неверное имя пользователя или пароль";
+    private String headerString = "WorkFlow";
+    private String textLoginField ="Номер телефона или E-mail";
+    private String textPasswordField="Пароль";
 
     @FindBy(id = "login_button")
     private WebElement loginButtonDefault;
@@ -45,9 +48,6 @@ public class LoginPage {
 
     public void open() {
         driver.get("https://gdcloud.ru/release-17/auth/login");
-    }
-    public void getStarted() {
-        loginButtonCurrent.click();
     }
     private void authorization(String login, String password) {
         usernameField.sendKeys(login);
@@ -81,6 +81,15 @@ public class LoginPage {
     }
     public void checkAuthWrongError() {
         checkErrorMsg(errorMsgWrongFields);
+    }
+    public void checkLoginPageHeader() {
+        String title = driver.getTitle();
+        Assert.assertEquals(headerString, title);
+    }
+    public void checkLoginPageElements() {
+        Assert.assertEquals(usernameField.getAttribute("placeholder"),textLoginField);
+        Assert.assertEquals(passwordField.getAttribute("placeholder"),textPasswordField);
+
     }
 
 }

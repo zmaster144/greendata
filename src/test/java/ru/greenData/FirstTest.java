@@ -15,22 +15,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FirstTest extends WebDriverSettings {
-    String login="tester";
-    String password="K35G3U";
-    String fakeLogin="test";
-    String fakePassword="1";
-    String emptyPassword="";
-    String emptyLogin="";
-
-
     @Test
     public void firstTest() {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.open();
-        String title = driver.getTitle();
-        Assert.assertTrue(title.equals("WorkFlow"));
-        loginPage.getStarted();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("error")));
+        loginPage.checkLoginPageHeader();
+        loginPage.checkLoginPageElements();
     }
     @Test
     public void errorAuthTest() {
