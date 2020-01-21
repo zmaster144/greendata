@@ -1,5 +1,7 @@
 package ru.greenData;
 
+import Pages.AuthorizedPage;
+import Pages.LoginPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -39,7 +41,7 @@ public class FirstTest extends WebDriverSettings {
     public void successLogin() {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.open();
-//        loginPage.loginWithLoginButtonDefault(login,password);
+        loginPage.loginWithLoginButtonDefault(login,password);
         AuthorizedPage authorizedPage = PageFactory.initElements(driver, AuthorizedPage.class);
         authorizedPage.checkSuccessfulAuth();
     }

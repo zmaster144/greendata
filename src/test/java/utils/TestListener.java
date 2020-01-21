@@ -86,9 +86,10 @@ public class TestListener extends WebDriverSettings implements ITestListener {
                 getScreenshotAs(OutputType.BASE64);
 
         //Extentreports log and screenshot operations for failed tests.
-        ExtentTestManager.getTest().log(LogStatus.FAIL,"Test Failed",
+        ExtentTestManager.getTest().log(LogStatus.FAIL,
+                iTestResult.getThrowable().toString(),
                 ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
-        ExtentTestManager.getTest().log(LogStatus.FAIL,iTestResult.getThrowable().toString());
+//        ExtentTestManager.getTest().log(LogStatus.FAIL,iTestResult.getThrowable().toString());
     }
 
     @Override
