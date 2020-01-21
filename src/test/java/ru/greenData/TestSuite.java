@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import utils.TestListener;
 
 @Listeners({ TestListener.class })
-public class FirstTest extends WebDriverSettings {
+public class TestSuite extends WebDriverSettings {
     @Test
     public void firstTest() {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -23,7 +23,7 @@ public class FirstTest extends WebDriverSettings {
     public void errorAuthTest() {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.open();
-        loginPage.loginWithLoginButtonCurrent(emptyLogin,emptyPassword);
+        loginPage.loginWithLoginButtonCurrent(EMPTY_LOGIN, EMPTY_PASSWORD);
         loginPage.checkAuthEmptyError();
 
     }
@@ -31,7 +31,7 @@ public class FirstTest extends WebDriverSettings {
     public void errorAuthTest2() {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.open();
-        loginPage.loginWithLoginButtonDefault(fakeLogin,fakePassword);
+        loginPage.loginWithLoginButtonDefault(FAKE_LOGIN, FAKE_PASSWORD);
         loginPage.checkAuthWrongError();
 
     }
@@ -41,7 +41,7 @@ public class FirstTest extends WebDriverSettings {
     public void successLogin() {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.open();
-        loginPage.loginWithLoginButtonDefault(login,password);
+        loginPage.loginWithLoginButtonDefault(LOGIN, PASSWORD);
         AuthorizedPage authorizedPage = PageFactory.initElements(driver, AuthorizedPage.class);
         authorizedPage.checkSuccessfulAuth();
     }

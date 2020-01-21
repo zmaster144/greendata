@@ -1,7 +1,5 @@
 package ru.greenData;
 
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,8 +11,6 @@ import org.testng.annotations.BeforeClass;
 public class WebDriverSettings extends TestsConfigurator {
     public WebDriver driver;
     public WebDriverWait wait;
-    public static ExtentReports extent;
-    public static ExtentTest test;
 
     private void initDriver(String browser) {
         if ("Chrome".equals(browser)) {
