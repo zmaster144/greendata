@@ -1,17 +1,20 @@
 package ru.greenData;
 
-import org.junit.After;
-import org.junit.Before;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import sun.plugin.services.BrowserService;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
-public class WebDriverSettings extends TestsConfigurator{
+public class WebDriverSettings extends TestsConfigurator {
     public WebDriver driver;
     public WebDriverWait wait;
+    public static ExtentReports extent;
+    public static ExtentTest test;
 
     private void initDriver(String browser) {
         if ("Chrome".equals(browser)) {
@@ -29,15 +32,20 @@ public class WebDriverSettings extends TestsConfigurator{
         } else {
             System.out.println("Invalid Browser!!!");
         }
+        driver.manage().deleteAllCookies();
+
+    }
+    public WebDriver getDriver() {
+        return driver;
     }
 
-    @Before
+    @BeforeClass
     public void setUp() {
         initDriver(BROWSER);
         wait = new WebDriverWait(driver, 10);
     }
 
-    @After
+    @AfterClass
     public void shutDownDriver() {
         driver.quit();
     }

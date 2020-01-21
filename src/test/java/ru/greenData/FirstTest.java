@@ -1,22 +1,14 @@
 package ru.greenData;
 
-import com.sun.org.glassfish.gmbal.Description;
-import com.sun.org.glassfish.gmbal.NameValue;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+import utils.TestListener;
 
-
+@Listeners({ TestListener.class })
 public class FirstTest extends WebDriverSettings {
     @Test
     public void firstTest() {
@@ -41,11 +33,13 @@ public class FirstTest extends WebDriverSettings {
         loginPage.checkAuthWrongError();
 
     }
+    @Description
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void successLogin() {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.open();
-        loginPage.loginWithLoginButtonDefault(login,password);
+//        loginPage.loginWithLoginButtonDefault(login,password);
         AuthorizedPage authorizedPage = PageFactory.initElements(driver, AuthorizedPage.class);
         authorizedPage.checkSuccessfulAuth();
     }
