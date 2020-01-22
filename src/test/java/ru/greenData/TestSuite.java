@@ -209,9 +209,57 @@ public class TestSuite extends WebDriverSettings {
     public void t_authCurrentWithSuccess() {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.openAuthPage();
-        loginPage.loginWithLoginButtonCurrent(LOGIN, PASSWORD);
+        loginPage.loginWithLoginButtonDefault(LOGIN, PASSWORD);
         loginPage.checkAuthEmptyError();
     }
-    
+    @Description("Проверка авторизации по кнопке Войти с чекбоксом-запомнить меня")
+    @Test
+    @Severity(SeverityLevel.MINOR)
+    public void u_authDefaultWithSuccessAndRemember() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.makeRememberInput();
+        loginPage.loginWithLoginButtonDefault(LOGIN, PASSWORD);
+        AuthorizedPage authorizedPage = PageFactory.initElements(driver, AuthorizedPage.class);
+        authorizedPage.checkSuccessfulAuth();
+    }
+    @Description("Проверка авторизации по кнопке Войти(текущая учетная запись) с чекбоксом-запомнить меня")
+    @Test
+    @Severity(SeverityLevel.MINOR)
+    public void v_authDomainWithSuccessAndRemember() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.makeRememberInput();
+        loginPage.loginWithLoginButtonDomain(LOGIN, PASSWORD);
+        loginPage.checkAuthEmptyError();
+
+    }
+    @Description("Проверка авторизации по кнопке Войти(текущая учетная запись) с чекбоксом-запомнить меня")
+    @Test
+    @Severity(SeverityLevel.MINOR)
+    public void w_authCurrentWithSuccessAndRemember() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.makeRememberInput();
+        loginPage.loginWithLoginButtonCurrent(LOGIN, PASSWORD);
+        loginPage.checkAuthEmptyError();
+
+    }
+    @Description("Проверка фейла авторизации по кнопке Войти с чекбоксом-запомнить меня")
+    @Test
+    @Severity(SeverityLevel.MINOR)
+    public void x_authDefaultWithSuccessAndRememberWithReopen() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.makeRememberInput();
+        loginPage.loginWithLoginButtonDefault(LOGIN, PASSWORD);
+        AuthorizedPage authorizedPage = PageFactory.initElements(driver, AuthorizedPage.class);
+        authorizedPage.checkSuccessfulAuth();
+        //откроем ещё одно окно в браузере, чтобы проверить, сработал ли чекбок "запомнить меня"
+        //открывается окно авторизации - чекбокс не работает
+        loginPage.openAuthPage();
+        authorizedPage.checkSuccessfulAuth();
+    }
+
 
 }

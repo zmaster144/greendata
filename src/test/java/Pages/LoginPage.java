@@ -47,6 +47,9 @@ public class LoginPage {
     @FindBy(id= "password")
     private WebElement passwordField;
 
+    @FindBy(xpath = "//*[@type='checkbox']")
+    private WebElement rememberMe;
+
     private By errorMsgLocator = By.id("error");
     private By loginLogo = By.className("login-logo");
     private By loginCorp = By.xpath("//div[@class='login_corp'][contains(text(), 'Корпоративная соцсеть')]");
@@ -109,6 +112,10 @@ public class LoginPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(loginCurrentXpath));
         wait.until(ExpectedConditions.visibilityOfElementLocated(loginDomainXpath));
 
+    }
+
+    public void makeRememberInput() {
+        rememberMe.click();
     }
 
 }
