@@ -5,8 +5,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class WebDriverSettings extends TestsConfigurator {
     public WebDriver driver;
@@ -35,13 +35,13 @@ public class WebDriverSettings extends TestsConfigurator {
         return driver;
     }
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
         initDriver(BROWSER);
         wait = new WebDriverWait(driver, 10);
     }
 
-    @AfterClass
+    @AfterMethod
     public void shutDownDriver() {
         driver.quit();
     }

@@ -209,7 +209,7 @@ public class TestSuite extends WebDriverSettings {
     public void t_authCurrentWithSuccess() {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.openAuthPage();
-        loginPage.loginWithLoginButtonDefault(LOGIN, PASSWORD);
+        loginPage.loginWithLoginButtonCurrent(LOGIN, PASSWORD);
         loginPage.checkAuthEmptyError();
     }
     @Description("Проверка авторизации по кнопке Войти с чекбоксом-запомнить меня")

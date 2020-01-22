@@ -111,6 +111,7 @@ public class LoginPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(loginDefXpath));
         wait.until(ExpectedConditions.visibilityOfElementLocated(loginCurrentXpath));
         wait.until(ExpectedConditions.visibilityOfElementLocated(loginDomainXpath));
+        checkLoginPageHeader();
 
     }
 
