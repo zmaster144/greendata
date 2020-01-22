@@ -183,4 +183,35 @@ public class TestSuite extends WebDriverSettings {
         loginPage.checkAuthWrongError();
     }
 
+    @Description("Проверка успешной авторизации по кнопке Войти")
+    @Test
+    @Severity(SeverityLevel.MINOR)
+    public void r_authDefaultWithSuccess() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.loginWithLoginButtonDefault(LOGIN, PASSWORD);
+        AuthorizedPage authorizedPage = PageFactory.initElements(driver, AuthorizedPage.class);
+        authorizedPage.checkSuccessfulAuth();
+    }
+    @Description("Проверка фейла авторизации по кнопке Войти(другая учетная запись) с дефолтным логином-паролем")
+    @Test
+    @Severity(SeverityLevel.MINOR)
+    public void s_authDomainWithSuccess() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.loginWithLoginButtonDomain(LOGIN, PASSWORD);
+        loginPage.checkAuthEmptyError();
+
+    }
+    @Description("Проверка фейла авторизации по кнопке Войти(текущая учетная запись) с дефолтным логином-паролем")
+    @Test
+    @Severity(SeverityLevel.MINOR)
+    public void t_authCurrentWithSuccess() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.loginWithLoginButtonCurrent(LOGIN, PASSWORD);
+        loginPage.checkAuthEmptyError();
+    }
+    
+
 }
