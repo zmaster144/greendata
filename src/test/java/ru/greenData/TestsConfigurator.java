@@ -15,6 +15,7 @@ public class TestsConfigurator {
     public static final String PASSWORD = "K35G3U";
     public static final String FAKE_LOGIN = "test";
     public static final String FAKE_PASSWORD = "1";
+    public static final String FAKE_PASSWORD_LONG ="abcde1234567890";
     public static final String EMPTY_LOGIN = "";
     public static final String EMPTY_PASSWORD = "";
 }

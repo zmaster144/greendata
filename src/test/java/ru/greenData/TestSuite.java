@@ -66,4 +66,121 @@ public class TestSuite extends WebDriverSettings {
         //здесь он упадёт т.к. поле логин required и нажатие на кнопку с этими полями не бросает ошибок
         loginPage.checkAuthEmptyError();
     }
+    @Description("Проверка авторизации по кнопке Войти(другая учетная запись) с пустыми полями")
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    public void f_authDomainWithEmptyFields1() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.loginWithLoginButtonDomain(EMPTY_LOGIN, EMPTY_PASSWORD);
+        loginPage.checkAuthEmptyError();
+    }
+
+    @Description("Проверка авторизации по кнопке Войти(другая учетная запись) с пустым логином и заполненным паролем")
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    public void g_authDomainWithEmptyFields2() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.loginWithLoginButtonDomain(EMPTY_LOGIN, PASSWORD);
+        loginPage.checkAuthEmptyError();
+    }
+    @Description("Проверка авторизации по кнопке Войти(другая учетная запись) с логином и пустым паролем")
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    public void h_authDomainWithEmptyFields3() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.loginWithLoginButtonDomain(LOGIN, EMPTY_PASSWORD);
+        loginPage.checkAuthEmptyError();
+    }
+    @Description("Проверка авторизации по кнопке Войти(текущая учетная запись) с пустыми полями")
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    public void i_authCurrentWithEmptyFields1() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.loginWithLoginButtonCurrent(EMPTY_LOGIN, EMPTY_PASSWORD);
+        loginPage.checkAuthEmptyError();
+    }
+    @Description("Проверка авторизации по кнопке Войти(текущая учетная запись) с логином и пустым паролем")
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    public void j_authCurrentWithEmptyFields2() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.loginWithLoginButtonCurrent(LOGIN, EMPTY_PASSWORD);
+        loginPage.checkAuthEmptyError();
+    }
+    @Description("Проверка авторизации по кнопке Войти(текущая учетная запись) с пустым логином и заполненным паролем")
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    public void k_authCurrentWithEmptyFields3() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        loginPage.loginWithLoginButtonCurrent(EMPTY_LOGIN, PASSWORD);
+        loginPage.checkAuthEmptyError();
+    }
+    @Description("Проверка авторизации по внопке Войти с не правильным логином и паролем")
+    @Test
+    @Severity(SeverityLevel.TRIVIAL)
+    public void l_authDefaultWithWrongLoginPassword() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+//        падает, т.к. отображается не правильная ошибка в случае не правильного логина и пароля
+        loginPage.loginWithLoginButtonCurrent(FAKE_LOGIN, FAKE_PASSWORD);
+        loginPage.checkAuthWrongError();
+    }
+    @Description("Проверка авторизации по внопке Войти(другая учетная запись) с не правильным логином и паролем")
+    @Test
+    @Severity(SeverityLevel.TRIVIAL)
+    public void m_authDomainWithWrongLoginPassword() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        //        падает, т.к. отображается не правильная ошибка в случае не правильного логина и пароля
+        loginPage.loginWithLoginButtonDomain(FAKE_LOGIN, FAKE_PASSWORD);
+        loginPage.checkAuthWrongError();
+    }
+    @Description("Проверка авторизации по внопке Войти(текущая учетная запись) с не правильным логином и паролем")
+    @Test
+    @Severity(SeverityLevel.TRIVIAL)
+    public void n_authCurrentWithWrongLoginPassword() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        //        падает, т.к. отображается не правильная ошибка в случае не правильного логина и пароля
+        loginPage.loginWithLoginButtonCurrent(FAKE_LOGIN, FAKE_PASSWORD);
+        loginPage.checkAuthWrongError();
+    }
+
+    @Description("Проверка авторизации по внопке Войти с не правильным логином и ДЛИННЫМ паролем")
+    @Test
+    @Severity(SeverityLevel.TRIVIAL)
+    public void o_authDefaultWithWrongLoginPassword() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+//        тут правильно сделано, не упадёт
+        loginPage.loginWithLoginButtonDefault(LOGIN, FAKE_PASSWORD_LONG);
+        loginPage.checkAuthWrongError();
+    }
+    @Description("Проверка авторизации по внопке Войти(другая учетная запись) с не правильным логином и ДЛИННЫМ паролем")
+    @Test
+    @Severity(SeverityLevel.TRIVIAL)
+    public void p_authDomainWithWrongLoginPassword() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        //        падает, т.к. отображается не правильная ошибка в случае не правильного логина и пароля
+        loginPage.loginWithLoginButtonDomain(LOGIN, FAKE_PASSWORD_LONG);
+        loginPage.checkAuthWrongError();
+    }
+    @Description("Проверка авторизации по внопке Войти(текущая учетная запись) с не правильным логином и ДЛИННИМ паролем")
+    @Test
+    @Severity(SeverityLevel.TRIVIAL)
+    public void q_authCurrentWithWrongLoginPassword() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.openAuthPage();
+        //        падает, т.к. отображается не правильная ошибка в случае не правильного логина и пароля
+        loginPage.loginWithLoginButtonCurrent(LOGIN, FAKE_PASSWORD_LONG);
+        loginPage.checkAuthWrongError();
+    }
+
 }
